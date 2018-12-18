@@ -2,6 +2,7 @@ module Main exposing (main, update)
 
 import Browser
 import Dummy
+import SelectList
 import Types exposing (..)
 import Types.Script as Script
 import View exposing (view)
@@ -21,10 +22,14 @@ update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Click ->
-            let
-                ( scripts, messageWindow ) =
-                    Script.next model.scripts model.messageWindow
-            in
-            ( { model | scripts = scripts, messageWindow = messageWindow }
-            , Cmd.none
-            )
+            if SelectList.isLast model.scripts then
+                ( model, Cmd.none )
+
+            else
+                let
+                    ( scripts, messageWindow ) =
+                        Script.next model.scripts model.messageWindow
+                in
+                ( { model | scripts = scripts, messageWindow = messageWindow }
+                , Cmd.none
+                )
