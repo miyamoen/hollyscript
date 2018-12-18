@@ -1,4 +1,4 @@
-module Types exposing (Line, MessageWindow, Model, Script(..))
+module Types exposing (Line, MessageWindow, Model, Msg(..), Script(..))
 
 import SelectList exposing (SelectList)
 
@@ -24,3 +24,7 @@ type alias Model =
     { messageWindow : MessageWindow
     , scripts : SelectList Script
     }
+
+
+type Msg
+    = Click

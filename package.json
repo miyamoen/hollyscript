@@ -1,0 +1,8 @@
+{
+    "name": "hollyscript",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+      "start": "elm-live src/Main.elm --open --pushstate --start-page=index.html --dir=public -- --output=public/elm.js"
+    }
+  }
