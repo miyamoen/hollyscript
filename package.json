@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "scripts": {
-      "start": "elm-live src/Main.elm --open --pushstate --start-page=index.html --dir=public -- --output=public/elm.js"
+      "start": "elm-live src/Main.elm --open --pushstate --start-page=index.html --dir=public -- --output=public/elm.js",
+      "bib": "elm-live src/Views/Bib.elm --open --pushstate --start-page=bib.html --dir=public -- --output=public/bib.js"
     }
   }

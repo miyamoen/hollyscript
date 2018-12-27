@@ -15,7 +15,7 @@ type alias Line =
 
 
 type alias MessageWindow =
-    { lines : List Line
+    { lines : SelectList Line
     , waitClick : Bool
     }
 

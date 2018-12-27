@@ -1,7 +1,12 @@
-module Views.Utils exposing (class, classList, when)
+module Views.Utils exposing (class, classList, style, when)
 
 import Element exposing (..)
 import Html.Attributes
+
+
+style : String -> String -> Attribute msg
+style k v =
+    htmlAttribute <| Html.Attributes.style k v
 
 
 class : String -> Attribute msg

@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "mochi";
+  src: url("fonts/NuKinakoMochi-Reg.otf"); /* IE9 Compat Modes */
+  src: url("fonts/NuKinakoMochi-Reg.otf") format("opentype");
+}
+
+body {
+  font-family: mochi;
+}
