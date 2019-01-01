@@ -1,6 +1,14 @@
-module Views.Utils exposing (class, classList, style, when)
+module Views.Utils exposing
+    ( class
+    , classList
+    , rootAttributes
+    , style
+    , when
+    , withFrame
+    )
 
 import Element exposing (..)
+import Element.Font as Font
 import Html.Attributes
 
 
@@ -26,3 +34,13 @@ when pred attr =
 
     else
         classList []
+
+
+rootAttributes : List (Attribute msg)
+rootAttributes =
+    [ Font.family [ Font.typeface "mochi" ] ]
+
+
+withFrame : Element msg -> Element msg
+withFrame element =
+    el (height fill :: width fill :: rootAttributes) element
