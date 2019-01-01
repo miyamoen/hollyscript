@@ -7,8 +7,8 @@ import Types exposing (..)
 model : Model
 model =
     { messageWindow =
-        { show = "むかーしむかし"
-        , rest = "あるところに"
+        { show = ""
+        , rest = "むかーしむかしあるところに"
         , waitClick = False
         }
     , scripts = scripts

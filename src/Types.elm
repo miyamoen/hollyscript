@@ -35,6 +35,7 @@ type alias Model =
 
 type Msg
     = Click
+    | Tick
 
 
 msgToString : Msg -> String
@@ -42,3 +43,6 @@ msgToString msg =
     case msg of
         Click ->
             "Click"
+
+        Tick ->
+            "Tick"

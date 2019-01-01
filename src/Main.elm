@@ -3,7 +3,9 @@ module Main exposing (main, update)
 import Browser
 import Dummy
 import SelectList
+import Time
 import Types exposing (..)
+import Types.MessageWindow as MessageWindow
 import Types.Script as Script
 import View exposing (view)
 
@@ -14,7 +16,7 @@ main =
         { init = \_ -> ( Dummy.model, Cmd.none )
         , view = view
         , update = update
-        , subscriptions = always Sub.none
+        , subscriptions = subscriptions
         }
 
 
@@ -27,3 +29,13 @@ update msg model =
 
             else
                 ( Script.next model, Cmd.none )
+
+        Tick ->
+            ( { model | messageWindow = MessageWindow.next model.messageWindow }
+            , Cmd.none
+            )
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.batch [ Time.every 100 (always Tick) ]
