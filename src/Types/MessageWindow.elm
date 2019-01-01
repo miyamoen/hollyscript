@@ -1,4 +1,4 @@
-module Types.MessageWindow exposing (next)
+module Types.MessageWindow exposing (isNextScripts, next)
 
 import Types exposing (..)
 
@@ -9,3 +9,8 @@ next { show, rest, waitClick } =
     , show = show ++ String.left 1 rest
     , rest = String.dropLeft 1 rest
     }
+
+
+isNextScripts : MessageWindow -> Bool
+isNextScripts { rest, waitClick } =
+    String.isEmpty rest && not waitClick

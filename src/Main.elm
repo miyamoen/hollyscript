@@ -13,7 +13,7 @@ import View exposing (view)
 main : Program () Model Msg
 main =
     Browser.document
-        { init = \_ -> ( Dummy.model, Cmd.none )
+        { init = \_ -> ( Script.start Dummy.model, Cmd.none )
         , view = view
         , update = update
         , subscriptions = subscriptions
@@ -31,11 +31,18 @@ update msg model =
                 ( Script.next model, Cmd.none )
 
         Tick ->
-            ( { model | messageWindow = MessageWindow.next model.messageWindow }
-            , Cmd.none
-            )
+            if MessageWindow.isNextScripts model.messageWindow then
+                update Click model
+
+            else if String.isEmpty model.messageWindow.rest then
+                ( model, Cmd.none )
+
+            else
+                ( { model | messageWindow = MessageWindow.next model.messageWindow }
+                , Cmd.none
+                )
 
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.batch [ Time.every 100 (always Tick) ]
+    Sub.batch [ Time.every 70 (always Tick) ]

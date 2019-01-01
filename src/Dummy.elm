@@ -8,7 +8,7 @@ model : Model
 model =
     { messageWindow =
         { show = ""
-        , rest = "むかーしむかしあるところに"
+        , rest = ""
         , waitClick = False
         }
     , scripts = scripts

@@ -1,7 +1,12 @@
-module Types.Script exposing (next)
+module Types.Script exposing (next, start)
 
 import SelectList exposing (SelectList)
 import Types exposing (..)
+
+
+start : Model -> Model
+start model =
+    { model | messageWindow = nextHelp model.scripts model.messageWindow }
 
 
 next : Model -> Model
@@ -20,10 +25,18 @@ nextHelp : SelectList Script -> MessageWindow -> MessageWindow
 nextHelp scripts window =
     case SelectList.selected scripts of
         Message msg ->
-            { window | rest = window.rest ++ msg }
+            { window
+                | rest =
+                    if String.isEmpty window.show then
+                        window.rest ++ msg
+
+                    else
+                        String.join " " [ window.rest, msg ]
+                , waitClick = False
+            }
 
         WaitClick ->
             { window | waitClick = True }
 
         ClearMessage ->
-            { window | show = "", rest = "" }
+            { show = "", rest = "", waitClick = False }
