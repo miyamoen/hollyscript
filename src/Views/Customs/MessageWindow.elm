@@ -1,16 +1,25 @@
-module Views.Customs.MessageWindow exposing (view)
+module Views.Customs.MessageWindow exposing (book, view)
 
+import Bibliopola exposing (..)
+import Dummy
 import Element exposing (..)
 import Element.Events exposing (onClick)
 import Types exposing (..)
-import Views.Utils exposing (when)
+import Views.Basics.Frame as Frame
+import Views.Basics.Message as Message
+import Views.Utils exposing (when, withFrame)
 
 
 view : MessageWindow -> Element Msg
-view { lines, waitClick } =
-    textColumn
-        [ when waitClick <| onClick Click
-        , when waitClick pointer
-        ]
-    <|
-        List.map (\line -> paragraph [] <| List.map text line) lines
+view { show, waitClick } =
+    Frame.view [ height fill, when waitClick <| onClick Click ] <|
+        Message.view show
+
+
+book : Book
+book =
+    bookWithFrontCover "MessageWindow"
+        (view Dummy.model.messageWindow
+            |> withFrame
+            |> Element.map msgToString
+        )

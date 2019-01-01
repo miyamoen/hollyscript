@@ -1,4 +1,11 @@
-module Types exposing (Line, MessageWindow, Model, Msg(..), Script(..))
+module Types exposing
+    ( Line
+    , MessageWindow
+    , Model
+    , Msg(..)
+    , Script(..)
+    , msgToString
+    )
 
 import SelectList exposing (SelectList)
 
@@ -6,7 +13,6 @@ import SelectList exposing (SelectList)
 type Script
     = Message String
     | WaitClick
-    | NewLine
     | ClearMessage
 
 
@@ -15,7 +21,8 @@ type alias Line =
 
 
 type alias MessageWindow =
-    { lines : SelectList Line
+    { show : String
+    , rest : String
     , waitClick : Bool
     }
 
@@ -28,3 +35,10 @@ type alias Model =
 
 type Msg
     = Click
+
+
+msgToString : Msg -> String
+msgToString msg =
+    case msg of
+        Click ->
+            "Click"
