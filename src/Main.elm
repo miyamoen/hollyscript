@@ -26,10 +26,4 @@ update msg model =
                 ( model, Cmd.none )
 
             else
-                let
-                    ( scripts, messageWindow ) =
-                        Script.next model.scripts model.messageWindow
-                in
-                ( { model | scripts = scripts, messageWindow = messageWindow }
-                , Cmd.none
-                )
+                ( Script.next model, Cmd.none )
